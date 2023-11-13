@@ -1,5 +1,5 @@
 require 'sinatra'
-require './posts.rb'
+require './blog/posts.rb'
 
 configure do
     set :port, 8080  
