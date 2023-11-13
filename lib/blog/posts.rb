@@ -2,7 +2,7 @@ require 'sqlite3'
 
 class Posts
     def initialize()
-        @db = SQLite3::Database.new "posts.db"
+        @db = SQLite3::Database.new "./db/posts.db"
 
         @db.execute <<-SQL
             CREATE TABLE IF NOT EXISTS posts (
