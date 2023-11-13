@@ -1,19 +1,19 @@
 require 'sinatra'
-require './blog/posts.rb'
+require 'blog/posts.rb'
 
-class App
+class App < Sinatra::Base
+    @posts = Posts.new
+    
+    configure do
+        set :port, 8080  
+    end
+
     def self.run()
-        configure do
-            set :port, 8080  
-        end
-
-        posts = Posts.new
-
-        posts.insert 'First Post', 'This is the first Post'
-        posts.insert 'Second Post', 'This is the second Post'
+        @posts.insert 'First Post', 'This is the first Post'
+        @posts.insert 'Second Post', 'This is the second Post'
 
         get '/' do
-            erb :index, locals: { posts: posts.get_posts }
+            erb :index, locals: { posts: @posts.get_posts }
         end
     end
 end
